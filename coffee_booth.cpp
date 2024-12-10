@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <deque>
+#include <vector>
 
 using namespace std;
 
@@ -16,9 +17,15 @@ struct MuffinCust {
     string muffin;
 };
 
+struct Bracelet {
+    string name;
+    string color;
+};
+
 const string names[] = {"Alicia", "Frank", "John", "Emma", "Sophia", "Liam", "Olivia", "Noah", "Ava", "James"};
 const string drinks[] = {"Cappuccino", "Mocha", "Americano", "Latte", "Espresso", "Macchiato", "Flat", "Affogato", "Cortado", "Irish"};
 const string muffins[] = {"Blueberry", "Chocolate", "Banana", "Bran", "Corn", "Pumpkin", "Apple", "Cranberry", "Lemon", "Poppyseed"};
+const string colors[] = {"Red", "Blue", "Green", "Yellow", "Purple", "Orange", "Pink", "Brown", "Black", "White"};
 
 // Function that adds a node to a linked list
 void addNode(Node*& head, const string& name, const string& drink) {
@@ -62,6 +69,7 @@ int main() {
     int count = 0;
     Node *head = nullptr;
     deque<MuffinCust> muffinQue;
+    vector<Bracelet> friendship;
     srand(time(0));
     // Generate 3 Customers
     for (int i = 0; i < 3; i++){
@@ -77,6 +85,13 @@ int main() {
         addCust.name = names[randName];
         addCust.muffin = muffins[randMuffin];
         muffinQue.push_back(addCust);
+
+        //Friendship Bracelet Vendor
+        randName = rand() % 10;
+        int randColor = rand() % 10;
+        Bracelet addBracelet;
+        addBracelet.name = names[randName];
+        addBracelet.color = colors[randColor];
     }
 
     while (count < 10) {
@@ -112,7 +127,9 @@ int main() {
             muffinQue.push_back(addCust);
         }
         
-        muffinQue.pop_front();
+        if (!muffinQue.empty()) {
+            muffinQue.pop_front();
+        }
         deleteFrontNode(head);
         
         count++;
