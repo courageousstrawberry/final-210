@@ -80,27 +80,42 @@ int main() {
     }
 
     while (count < 10) {
+        cout << "[" << count+1 << "]" << endl;
+        cout << "Coffee Vendor Queue: " << endl;
         display(head);
+
+        cout << "Muffin Vendor Queue: " << endl;
+        for (const auto& it : muffinQue) {
+            cout << "- " << it.name << ", " << it.muffin << endl;
+        }
+        
+         cout << "--------------" << endl;
+
         // Random probability number
-        int rand_num = rand() % 100;
+        int coffee_prob = rand() % 100;
+        int muffin_prob = rand() % 100;
 
         // If 50% add person to queue
-        if (rand_num < 50) {
+        if (coffee_prob < 50) {
             int randName = rand() % 10;
             int randDrink = rand() % 10;
 
             addNode(head, names[randName], drinks[randDrink]);
         }
+
+        if (muffin_prob < 50) {
+            int randName = rand() % 10;
+            int randMuffin = rand() % 10;
+            MuffinCust addCust;
+            addCust.name = names[randName];
+            addCust.muffin = muffins[randMuffin];
+            muffinQue.push_back(addCust);
+        }
         
-        cout << "Coffee Vendor Queue: " << endl;
+        muffinQue.pop_front();
         deleteFrontNode(head);
         
-        cout << "Muffin Vendor Queue: " << endl;
-        for (const auto& it : muffinQue) {
-            cout << "- " << it.name << it.muffin << endl;
-        }
         count++;
-        cout << "--------------" << endl;
     }
-
+    return 0;
 }
