@@ -44,7 +44,16 @@ int main() {
     }
 
     while (count < 10) {
-        
+        // Random probability number
+        int rand_num = rand() % 100;
+
+        // If 50% add person to queue
+        if (rand_num < 50) {
+            int randName = rand() % 10 + 1;
+            int randDrink = rand() % 10 + 1;
+
+            addNode(head, names[randName], drinks[randDrink]);
+        }
         
         count++;
     }
