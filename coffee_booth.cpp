@@ -32,6 +32,17 @@ void addNode(Node*& head, const string& name, const string& drink) {
         }
 }
 
+void deleteFrontNode(Node*& head) {    
+    if(head == nullptr) {
+        return;
+    }
+    else {
+        Node* temp = head;
+        head = head->next;
+        delete temp;
+    }
+}
+
 int main() {
     int count = 0;
     Node *head = nullptr;
@@ -54,6 +65,8 @@ int main() {
 
             addNode(head, names[randName], drinks[randDrink]);
         }
+        
+
         
         count++;
     }
