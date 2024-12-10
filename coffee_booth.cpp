@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include <deque>
 
 using namespace std;
 
@@ -10,8 +11,14 @@ struct Node {
     Node* next;
 };
 
+struct MuffinCust {
+    string name;
+    string muffin;
+};
+
 const string names[] = {"Alicia", "Frank", "John", "Emma", "Sophia", "Liam", "Olivia", "Noah", "Ava", "James"};
 const string drinks[] = {"Cappuccino", "Mocha", "Americano", "Latte", "Espresso", "Macchiato", "Flat", "Affogato", "Cortado", "Irish"};
+const string muffins[] = {"Blueberry", "Chocolate", "Banana", "Bran", "Corn", "Pumpkin", "Apple", "Cranberry", "Lemon", "Poppyseed"};
 
 // Function that adds a node to a linked list
 void addNode(Node*& head, const string& name, const string& drink) {
@@ -54,13 +61,22 @@ void display(Node*& head) {
 int main() {
     int count = 0;
     Node *head = nullptr;
+    deque<MuffinCust> muffinQue;
     srand(time(0));
     // Generate 3 Customers
     for (int i = 0; i < 3; i++){
-        int randName = rand() % 10 + 1;
-        int randDrink = rand() % 10 + 1;
+        // Coffee Vendor
+        int randName = rand() % 10;
+        int randDrink = rand() % 10;
 
         addNode(head, names[randName], drinks[randDrink]);
+        // Muffin Vendor
+        randName = rand() % 10;
+        int randMuffin = rand() % 10;
+        MuffinCust addCust;
+        addCust.name = names[randName];
+        addCust.muffin = muffins[randMuffin];
+        muffinQue.push_back(addCust);
     }
 
     while (count < 10) {
@@ -76,8 +92,13 @@ int main() {
             addNode(head, names[randName], drinks[randDrink]);
         }
         
+        cout << "Coffee Vendor Queue: " << endl;
         deleteFrontNode(head);
         
+        cout << "Muffin Vendor Queue: " << endl;
+        for (const auto& it : muffinQue) {
+            cout << "- " << it.name << it.muffin << endl;
+        }
         count++;
         cout << "--------------" << endl;
     }
