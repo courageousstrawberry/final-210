@@ -43,9 +43,18 @@ void deleteFrontNode(Node*& head) {
     }
 }
 
+void display(Node*& head) {
+    Node* temp = head;
+    while(temp != nullptr) {
+        cout << "- " << temp->name << ", " << temp->drinkOrder << endl;
+        temp = temp->next;
+    }
+}
+
 int main() {
     int count = 0;
     Node *head = nullptr;
+    srand(time(0));
     // Generate 3 Customers
     for (int i = 0; i < 3; i++){
         int randName = rand() % 10 + 1;
@@ -55,20 +64,22 @@ int main() {
     }
 
     while (count < 10) {
+        display(head);
         // Random probability number
         int rand_num = rand() % 100;
 
         // If 50% add person to queue
         if (rand_num < 50) {
-            int randName = rand() % 10 + 1;
-            int randDrink = rand() % 10 + 1;
+            int randName = rand() % 10;
+            int randDrink = rand() % 10;
 
             addNode(head, names[randName], drinks[randDrink]);
         }
         
-
+        deleteFrontNode(head);
         
         count++;
+        cout << "--------------" << endl;
     }
 
 }
