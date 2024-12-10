@@ -136,20 +136,20 @@ int main() {
         cout << "--------------" << endl;
 
         // Random probability number
-        int coffee_prob = rand() % 100;
-        int muffin_prob = rand() % 100;
-        int bracelet_prob = rand() % 100;
-        int clothing_prob = rand() % 100;
+        int coffee_prob = rand() % 100 + 1;
+        int muffin_prob = rand() % 100 + 1;
+        int bracelet_prob = rand() % 100 + 1;
+        int clothing_prob = rand() % 100 + 1;
 
         // If 50% add person to queue
-        if (coffee_prob < 50) {
+        if (coffee_prob <= 50) {
             int randName = rand() % 10;
             int randDrink = rand() % 10;
 
             addNode(head, names[randName], drinks[randDrink]);
         }
 
-        if (muffin_prob < 50) {
+        if (muffin_prob <= 50) {
             int randName = rand() % 10;
             int randMuffin = rand() % 10;
             MuffinCust addCust;
@@ -158,7 +158,7 @@ int main() {
             muffinQue.push_back(addCust);
         }
 
-        if (bracelet_prob < 50) {
+        if (bracelet_prob <= 50) {
             int randName = rand() % 10;
             int randColor = rand() % 10;
             Bracelet addBracelet;
@@ -167,7 +167,7 @@ int main() {
             friendship.push_back(addBracelet);
         }
 
-        if (clothing_prob < 50) {
+        if (clothing_prob <= 50) {
             int randName = rand() % 10;
             int randCloth = rand() % 10;
             Outfit addOutfit;
