@@ -127,12 +127,13 @@ int main() {
         for (const Bracelet bracelet : friendship) {
             cout << "- " << bracelet.name << ", " << bracelet.color << endl;
         }
-        cout << "--------------" << endl;
 
         cout << "Clothing Vendor Queue: " << endl;
         for (Outfit value : clothingQue) {
             cout << "- " << value.name << ", " << value.item << endl;
         }
+        
+        cout << "--------------" << endl;
 
         // Random probability number
         int coffee_prob = rand() % 100;
